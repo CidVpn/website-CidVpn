@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CID VPN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #60a5fa 0%, #38bdf8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .tagline {
+            font-size: 1.3rem;
+            color: #94a3b8;
+            font-weight: 300;
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #38bdf8;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h2::before {
+            content: "🔗";
+            font-size: 1.2rem;
+        }
+        .url-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .url-box {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 18px;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .button {
+            background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .button:hover {
+            background: linear-gradient(90deg, #1d4ed8 0%, #1e40af 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+        }
+        .button:active {
+            transform: translateY(0);
+        }
+        .button-copied {
+            background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+        }
+        .button-copied:hover {
+            background: linear-gradient(90deg, #059669 0%, #047857 100%);
+        }
+        .icon {
+            font-size: 1.2rem;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(100, 116, 139, 0.3);
+        }
+        .donate {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        .donate-title {
+            color: #fbbf24;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+        .donate-title::before {
+            content: "⭐";
+        }
+        .address {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #475569;
+            border-radius: 12px;
+            padding: 18px;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: #fbbf24;
+            word-break: break-all;
+            text-align: center;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .tagline {
+                font-size: 1.1rem;
+            }
+            .card {
+                padding: 20px;
+            }
+            .button {
+                padding: 14px 20px;
+            }
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .url-box {
+                font-size: 0.85rem;
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CID VPN</h1>
+            <p class="tagline">Готов ускорить ваш интернет</p>
+        </header>
+
+        <main>
+            <section class="card">
+                <h2>Основная подписка</h2>
+                <div class="url-container">
+                    <div class="url-box" id="mainUrl">https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt</div>
+                    <button class="button" id="copyMain" data-url="https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt">
+                        <span class="icon">📋</span> Копировать ссылку
+                    </button>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Белые списки</h2>
+                <div class="url-container">
+                    <div class="url-box" id="whitelistUrl">https://storage.yandexcloud.net/cid-vpn/whitelist.txt</div>
+                    <button class="button" id="copyWhitelist" data-url="https://storage.yandexcloud.net/cid-vpn/whitelist.txt">
+                        <span class="icon">📋</span> Копировать ссылку
+                    </button>
+                </div>
+            </section>
+
+            <section class="donate">
+                <div class="donate-title">Поддержать проект</div>
+                <p style="text-align: center; margin-bottom: 15px; color: #cbd5e1;">Если наш VPN полезен для вас, вы можете поддержать его развитие:</p>
+                <div class="address">
+                    TON: UQBb0NBn64wj6IoFbRddAwoyhDj6LkqNgon_zKdNnT-v19cG
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>CID VPN &copy; 2026 | Бесплатный и быстрый VPN для всех</p>
+        </footer>
+    </div>
+
+    <script>
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerHTML;
+                button.innerHTML = '<span class="icon">✅</span> Скопировано!';
+                button.classList.add('button-copied');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('button-copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('Ошибка копирования: ', err);
+                alert('Не удалось скопировать. Попробуйте выделить текст вручную.');
+            });
+        }
+
+        document.getElementById('copyMain').addEventListener('click', function() {
+            const url = this.getAttribute('data-url');
+            copyToClipboard(url, this);
+        });
+
+        document.getElementById('copyWhitelist').addEventListener('click', function() {
+            const url = this.getAttribute('data-url');
+            copyToClipboard(url, this);
+        });
+    </script>
+</body>
+</html>
