@@ -17,19 +17,16 @@
             min-height: 100vh;
             padding: 20px;
             line-height: 1.6;
-            position: relative;
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            position: relative;
         }
         header {
             text-align: center;
             margin-bottom: 40px;
             padding-top: 20px;
-            position: relative;
         }
         h1 {
             font-size: 2.8rem;
@@ -174,52 +171,6 @@
             background: linear-gradient(90deg, #0284c7 0%, #0369a1 100%);
             box-shadow: 0 6px 20px rgba(14, 165, 233, 0.3);
         }
-        /* Стили для скрытой кнопки */
-        .button-hidden {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent !important;
-            border: none !important;
-            opacity: 0;
-            cursor: default;
-            z-index: 1;
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-        .button-danger {
-            background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%) !important;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: auto;
-            padding: 12px 24px !important;
-            animation: pulse 2s infinite;
-            z-index: 1000;
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
-            display: none;
-        }
-        .button-danger:hover {
-            background: linear-gradient(90deg, #dc2626 0%, #b91c1c 100%) !important;
-            animation: none;
-            transform: scale(1.05);
-        }
-        .button-danger.visible {
-            display: flex;
-        }
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
-            }
-        }
         .icon {
             font-size: 1.2rem;
         }
@@ -279,7 +230,6 @@
             color: #94a3b8;
             font-size: 0.95rem;
             border-top: 1px solid rgba(100, 116, 139, 0.3);
-            position: relative;
         }
         .donate {
             background: rgba(30, 41, 59, 0.7);
@@ -345,12 +295,6 @@
                 font-size: 0.85rem;
                 padding: 14px;
             }
-            .button-danger {
-                bottom: 10px;
-                right: 10px;
-                padding: 10px 20px !important;
-                font-size: 0.9rem;
-            }
             .support-button {
                 top: 10px;
                 right: 10px;
@@ -376,9 +320,6 @@
     </a>
 
     <div class="container">
-        <!-- Скрытая кнопка-активатор -->
-        <button class="button button-hidden" id="hiddenActivator"></button>
-        
         <header>
             <h1>CID VPN</h1>
             <p class="tagline">Готов ускорить ваш интернет</p>
@@ -454,11 +395,6 @@
         </footer>
     </div>
 
-    <!-- Скрытая кнопка "НЕ НАЖИМАЙ!!!" -->
-    <a href="https://t.me/nowkies/3081" class="button button-danger" id="dangerButton" target="_blank">
-        <span class="icon">⚠️</span> НЕ НАЖИМАЙ!!!
-    </a>
-
     <script>
         function copyToClipboard(text, button) {
             navigator.clipboard.writeText(text).then(() => {
@@ -481,57 +417,6 @@
                 e.preventDefault();
             }
         }
-
-        // Переменные для активации скрытой кнопки
-        let clickCount = 0;
-        const clickThreshold = 7; // Нужно кликнуть 7 раз
-        let dangerButtonVisible = false;
-
-        // Функция для показа скрытой кнопки
-        function showDangerButton() {
-            const dangerButton = document.getElementById('dangerButton');
-            dangerButton.classList.add('visible');
-            dangerButtonVisible = true;
-            
-            // Скрыть кнопку через 30 секунд
-            setTimeout(() => {
-                if (dangerButtonVisible) {
-                    dangerButton.classList.remove('visible');
-                    dangerButtonVisible = false;
-                    clickCount = 0; // Сброс счетчика
-                }
-            }, 30000);
-        }
-
-        // Обработчик для скрытой кнопки-активатора
-        document.getElementById('hiddenActivator').addEventListener('click', function() {
-            clickCount++;
-            
-            // Если кликнули достаточно раз, показываем кнопку
-            if (clickCount >= clickThreshold && !dangerButtonVisible) {
-                showDangerButton();
-            }
-        });
-
-        // Обработчик для самой опасной кнопки
-        document.getElementById('dangerButton').addEventListener('click', function(e) {
-            if (!confirm('ТЫ ТОЧНО УВЕРЕН? Это может быть опасно!')) {
-                e.preventDefault();
-            } else {
-                // Дополнительное предупреждение
-                setTimeout(() => {
-                    if (confirm('ПОСЛЕДНИЙ ШАНС ОТМЕНИТЬ! Ты уверен на 100%?')) {
-                        // Кнопка уже ведет на ссылку через href
-                        // Можно добавить дополнительную логику здесь
-                    } else {
-                        e.preventDefault();
-                        this.classList.remove('visible');
-                        dangerButtonVisible = false;
-                        clickCount = 0;
-                    }
-                }, 100);
-            }
-        });
 
         // Обработчик для кнопки техподдержки
         document.getElementById('supportButton').addEventListener('click', function(e) {
@@ -558,15 +443,6 @@
         // Подтверждение загрузки Windows версии
         document.getElementById('downloadWindows').addEventListener('click', function(e) {
             confirmDownload('setup-Happ.x64.exe (Windows)', e);
-        });
-
-        // Дополнительный способ активации: комбинация клавиш Ctrl+Shift+D
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-                if (!dangerButtonVisible) {
-                    showDangerButton();
-                }
-            }
         });
     </script>
 </body>
