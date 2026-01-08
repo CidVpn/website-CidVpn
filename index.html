@@ -89,7 +89,6 @@
             white-space: nowrap;
         }
         .button {
-            background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
             color: white;
             border: none;
             border-radius: 12px;
@@ -104,14 +103,21 @@
             transition: all 0.3s ease;
             width: 100%;
             text-decoration: none;
+            text-align: center;
         }
         .button:hover {
-            background: linear-gradient(90deg, #1d4ed8 0%, #1e40af 100%);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
         .button:active {
             transform: translateY(0);
+        }
+        .button-copy {
+            background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        .button-copy:hover {
+            background: linear-gradient(90deg, #1d4ed8 0%, #1e40af 100%);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
         }
         .button-copied {
             background: linear-gradient(90deg, #10b981 0%, #059669 100%);
@@ -119,12 +125,19 @@
         .button-copied:hover {
             background: linear-gradient(90deg, #059669 0%, #047857 100%);
         }
-        .button-download {
+        .button-android {
             background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
         }
-        .button-download:hover {
+        .button-android:hover {
             background: linear-gradient(90deg, #7c3aed 0%, #6d28d9 100%);
             box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+        }
+        .button-windows {
+            background: linear-gradient(90deg, #0ea5e9 0%, #0284c7 100%);
+        }
+        .button-windows:hover {
+            background: linear-gradient(90deg, #0284c7 0%, #0369a1 100%);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.3);
         }
         .icon {
             font-size: 1.2rem;
@@ -162,6 +175,21 @@
             position: absolute;
             left: 0;
             font-weight: bold;
+        }
+        .download-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .platform-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+        .platform-info span {
+            color: #94a3b8;
+            font-size: 0.85rem;
         }
         footer {
             text-align: center;
@@ -217,6 +245,9 @@
             .button {
                 padding: 14px 20px;
             }
+            .download-buttons {
+                grid-template-columns: 1fr;
+            }
         }
         @media (max-width: 480px) {
             h1 {
@@ -241,7 +272,7 @@
                 <h2 class="main-sub">Основная подписка</h2>
                 <div class="url-container">
                     <div class="url-box" id="mainUrl">https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt</div>
-                    <button class="button" id="copyMain" data-url="https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt">
+                    <button class="button button-copy" id="copyMain" data-url="https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt">
                         <span class="icon">📋</span> Копировать ссылку
                     </button>
                 </div>
@@ -251,7 +282,7 @@
                 <h2 class="whitelist">Белые списки</h2>
                 <div class="url-container">
                     <div class="url-box" id="whitelistUrl">https://storage.yandexcloud.net/cid-vpn/whitelist.txt</div>
-                    <button class="button" id="copyWhitelist" data-url="https://storage.yandexcloud.net/cid-vpn/whitelist.txt">
+                    <button class="button button-copy" id="copyWhitelist" data-url="https://storage.yandexcloud.net/cid-vpn/whitelist.txt">
                         <span class="icon">📋</span> Копировать ссылку
                     </button>
                 </div>
@@ -260,7 +291,7 @@
             <section class="card">
                 <h2 class="app">Приложение Happ</h2>
                 <div class="app-description">
-                    <p>Для работы VPN необходимо установить клиент Happ. Это приложение позволяет использовать конфигурации CID VPN для безопасного и быстрого подключения.</p>
+                    <p>Для работы VPN необходимо установить клиент Happ. Это приложение позволяет использовать конфигурации CID VPN для безопасного и быстрого подключения на различных устройствах.</p>
                 </div>
                 
                 <div class="app-features">
@@ -268,19 +299,26 @@
                     <ul>
                         <li>Поддержка протоколов V2Ray, Xray и других</li>
                         <li>Высокая скорость подключения</li>
-                        <li>Минимальное потребление батареи</li>
+                        <li>Минимальное потребление ресурсов</li>
                         <li>Простой импорт конфигураций</li>
                         <li>Стабильная работа в фоновом режиме</li>
+                        <li>Поддержка Windows и Android</li>
                     </ul>
                 </div>
                 
                 <div class="url-container">
-                    <a href="https://github.com/Happ-proxy/happ-android/releases/latest/download/Happ.apk" class="button button-download" id="downloadApp">
-                        <span class="icon">⬇️</span> Скачать Happ.apk
-                    </a>
-                    <p style="text-align: center; color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">
-                        Версия для Android. Размер: ~15 MB
-                    </p>
+                    <div class="download-buttons">
+                        <a href="https://github.com/Happ-proxy/happ-android/releases/latest/download/Happ.apk" class="button button-android" id="downloadAndroid">
+                            <span class="icon">⬇️</span> Скачать Happ.apk
+                        </a>
+                        <a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x64.exe" class="button button-windows" id="downloadWindows">
+                            <span class="icon">⬇️</span> Скачать setup-Happ.x64.exe
+                        </a>
+                    </div>
+                    <div class="platform-info">
+                        <span>Для Android 5.0+</span>
+                        <span>Для Windows 10/11 (64-bit)</span>
+                    </div>
                 </div>
             </section>
 
@@ -295,7 +333,7 @@
 
         <footer>
             <p>CID VPN &copy; 2026 | Бесплатный и быстрый VPN для всех</p>
-            <p style="margin-top: 10px; font-size: 0.85rem;">Для работы требуется приложение Happ для Android</p>
+            <p style="margin-top: 10px; font-size: 0.85rem;">Доступно для Android и Windows через приложение Happ</p>
         </footer>
     </div>
 
@@ -316,6 +354,12 @@
             });
         }
 
+        function confirmDownload(filename, e) {
+            if (!confirm(`Вы будете перенаправлены на страницу загрузки ${filename}. Продолжить?`)) {
+                e.preventDefault();
+            }
+        }
+
         document.getElementById('copyMain').addEventListener('click', function() {
             const url = this.getAttribute('data-url');
             copyToClipboard(url, this);
@@ -326,11 +370,14 @@
             copyToClipboard(url, this);
         });
 
-        // Подтверждение загрузки приложения
-        document.getElementById('downloadApp').addEventListener('click', function(e) {
-            if (!confirm('Вы будете перенаправлены на страницу загрузки Happ.apk. Продолжить?')) {
-                e.preventDefault();
-            }
+        // Подтверждение загрузки Android версии
+        document.getElementById('downloadAndroid').addEventListener('click', function(e) {
+            confirmDownload('Happ.apk (Android)', e);
+        });
+
+        // Подтверждение загрузки Windows версии
+        document.getElementById('downloadWindows').addEventListener('click', function(e) {
+            confirmDownload('setup-Happ.x64.exe (Windows)', e);
         });
     </script>
 </body>
