@@ -305,14 +305,21 @@
             background: rgba(20, 35, 28, 0.8);
             border: 1px solid #4a765f;
             border-radius: 12px;
-            padding: 18px;
+            padding: 20px;
             margin-top: 15px;
         }
-        .address-text {
+        .address-row {
+            margin-bottom: 20px;
+        }
+        .address-row:last-child {
+            margin-bottom: 0;
+        }
+        .address-label {
             font-size: 1rem;
             color: #ffd54f;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
         .address-box {
             background: rgba(15, 25, 20, 0.9);
@@ -385,6 +392,9 @@
                 font-size: 0.85rem;
                 padding: 12px;
             }
+            .address-container {
+                padding: 18px;
+            }
         }
         @media (max-width: 480px) {
             h1 {
@@ -414,6 +424,9 @@
             .address-box {
                 font-size: 0.8rem;
                 padding: 10px;
+            }
+            .address-container {
+                padding: 15px;
             }
         }
         @media (max-width: 360px) {
@@ -519,11 +532,23 @@
                 <p style="text-align: center; margin-bottom: 15px; color: #c8e6c9;">Если наш VPN полезен для вас, вы можете поддержать его развитие:</p>
                 
                 <div class="address-container">
-                    <div class="address-text">TON:</div>
-                    <div class="address-box" id="tonAddress" data-address="UQBb0NBn64wj6IoFbRddAwoyhDj6LkqNgon_zKdNnT-v19cG">
-                        "UQBb0NBn64wj6IoFbRddAwoyhDj6LkqNgon_zKdNnT-v19cG"
+                    <!-- TON адрес -->
+                    <div class="address-row">
+                        <div class="address-label">TON:</div>
+                        <div class="address-box" id="tonAddress" data-address="UQBb0NBn64wj6IoFbRddAwoyhDj6LkqNgon_zKdNnT-v19cG">
+                            "UQBb0NBn64wj6IoFbRddAwoyhDj6LkqNgon_zKdNnT-v19cG"
+                        </div>
                     </div>
-                    <div class="copy-hint">Нажмите, чтобы скопировать адрес</div>
+                    
+                    <!-- USDT TON адрес -->
+                    <div class="address-row">
+                        <div class="address-label">USDT TON:</div>
+                        <div class="address-box" id="usdtTonAddress" data-address="UQBxMlPN-FzN3T7KktQJpYuwuZGzGqVTUeFrmyF-QLD-XFbr">
+                            "UQBxMlPN-FzN3T7KktQJpYuwuZGzGqVTUeFrmyF-QLD-XFbr"
+                        </div>
+                    </div>
+                    
+                    <div class="copy-hint">Нажмите на адрес, чтобы скопировать</div>
                 </div>
             </section>
         </main>
@@ -573,6 +598,12 @@
 
         // Обработчик для копирования TON адреса
         document.getElementById('tonAddress').addEventListener('click', function() {
+            const address = this.getAttribute('data-address');
+            copyToClipboard(address, this);
+        });
+
+        // Обработчик для копирования USDT TON адреса
+        document.getElementById('usdtTonAddress').addEventListener('click', function() {
             const address = this.getAttribute('data-address');
             copyToClipboard(address, this);
         });
