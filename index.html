@@ -625,6 +625,14 @@
                         </div>
                     </div>
                     
+                    <!-- TON адрес для хостинга бота -->
+                    <div class="address-row">
+                        <div class="address-label">TON (для аренды хостинга бота):</div>
+                        <div class="address-box" id="tonHostingAddress" data-address="UQBIXFswLKhOsu2Wq7UhsEffLiPCJN9o6ej5hPGOYPpcI9sH">
+                            "UQBIXFswLKhOsu2Wq7UhsEffLiPCJN9o6ej5hPGOYPpcI9sH"
+                        </div>
+                    </div>
+                    
                     <div class="copy-hint">Нажмите на адрес, чтобы скопировать</div>
                 </div>
             </section>
@@ -706,6 +714,12 @@
 
         // Обработчик для копирования USDT TON адреса
         document.getElementById('usdtTonAddress').addEventListener('click', function() {
+            const address = this.getAttribute('data-address');
+            copyToClipboard(address, this);
+        });
+
+        // Обработчик для копирования TON адреса для хостинга
+        document.getElementById('tonHostingAddress').addEventListener('click', function() {
             const address = this.getAttribute('data-address');
             copyToClipboard(address, this);
         });
