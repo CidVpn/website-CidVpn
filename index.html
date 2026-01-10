@@ -142,6 +142,9 @@
         .main-sub::before {
             content: "🔗";
         }
+        .auto-sub::before {
+            content: "🔄";
+        }
         .whitelist::before {
             content: "📝";
         }
@@ -561,6 +564,16 @@
             </section>
 
             <section class="card">
+                <h2 class="auto-sub">Автообновляемая подписка</h2>
+                <div class="url-container">
+                    <div class="url-box" id="autoUrl">https://raw.githubusercontent.com/CidVpn/vless-working-sub/refs/heads/main/working_proxies.txt</div>
+                    <button class="button button-copy" id="copyAuto" data-url="https://raw.githubusercontent.com/CidVpn/vless-working-sub/refs/heads/main/working_proxies.txt">
+                        <span class="icon">📋</span> Копировать ссылку
+                    </button>
+                </div>
+            </section>
+
+            <section class="card">
                 <h2 class="whitelist">Белые списки</h2>
                 <div class="url-container">
                     <div class="url-box" id="whitelistUrl">https://storage.yandexcloud.net/cid-vpn/whitelist.txt</div>
@@ -625,9 +638,9 @@
                         </div>
                     </div>
                     
-                    <!-- TON адрес для хостинга бота -->
+                    <!-- TON адрес для хостинга -->
                     <div class="address-row">
-                        <div class="address-label">TON (для аренды хостинга бота):</div>
+                        <div class="address-label">TON (для аренды хостинга):</div>
                         <div class="address-box" id="tonHostingAddress" data-address="UQBIXFswLKhOsu2Wq7UhsEffLiPCJN9o6ej5hPGOYPpcI9sH">
                             "UQBIXFswLKhOsu2Wq7UhsEffLiPCJN9o6ej5hPGOYPpcI9sH"
                         </div>
@@ -724,11 +737,19 @@
             copyToClipboard(address, this);
         });
 
+        // Обработчик для копирования основной подписки
         document.getElementById('copyMain').addEventListener('click', function() {
             const url = this.getAttribute('data-url');
             copyToClipboard(url, this);
         });
 
+        // Обработчик для копирования автообновляемой подписки
+        document.getElementById('copyAuto').addEventListener('click', function() {
+            const url = this.getAttribute('data-url');
+            copyToClipboard(url, this);
+        });
+
+        // Обработчик для копирования белых списков
         document.getElementById('copyWhitelist').addEventListener('click', function() {
             const url = this.getAttribute('data-url');
             copyToClipboard(url, this);
