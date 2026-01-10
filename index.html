@@ -151,6 +151,9 @@
         .app::before {
             content: "📱";
         }
+        .poll::before {
+            content: "📊";
+        }
         .url-container {
             display: flex;
             flex-direction: column;
@@ -420,6 +423,33 @@
         .sponsor-telegram::before {
             content: "📢";
         }
+        /* Стили для опроса */
+        .poll-container {
+            margin-top: 30px;
+        }
+        .poll-frame-container {
+            background: rgba(30, 50, 40, 0.7);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(100, 150, 120, 0.3);
+        }
+        .poll-frame {
+            width: 100%;
+            height: 465px;
+            border: none;
+            border-radius: 8px;
+            background: white;
+        }
+        .poll-description {
+            text-align: center;
+            color: #c8e6c9;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
         @media (min-width: 768px) {
             .sponsors-list {
                 flex-direction: row;
@@ -475,6 +505,14 @@
             .address-container {
                 padding: 18px;
             }
+            .poll-frame {
+                height: 500px;
+            }
+        }
+        @media (max-width: 640px) {
+            .poll-frame {
+                height: 600px;
+            }
         }
         @media (max-width: 480px) {
             h1 {
@@ -508,6 +546,9 @@
             .address-container {
                 padding: 15px;
             }
+            .poll-frame {
+                height: 700px;
+            }
         }
         @media (max-width: 360px) {
             .top-buttons {
@@ -523,6 +564,9 @@
             .top-button {
                 padding: 6px 12px;
                 font-size: 0.8rem;
+            }
+            .poll-frame {
+                height: 800px;
             }
         }
     </style>
@@ -650,7 +694,7 @@
                 </div>
             </section>
 
-            <!-- Новый раздел: Наши спонсоры -->
+            <!-- Раздел: Наши спонсоры -->
             <section class="sponsors">
                 <div class="sponsors-title">Наши спонсоры</div>
                 <div class="sponsors-list">
@@ -671,6 +715,26 @@
                             </div>
                             <div class="sponsor-telegram">Telegram канал</div>
                         </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Раздел: Опрос -->
+            <section class="poll-container">
+                <div class="card">
+                    <h2 class="poll">Опрос</h2>
+                    <p class="poll-description">
+                        Помогите нам улучшить CID VPN! Пройдите короткий опрос.
+                    </p>
+                    <div class="poll-frame-container">
+                        <iframe 
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSeX2YpP7kbx2h6GEHjvXObqxxfKQ1qAVYTgpXkyOkZh4OzYlQ/viewform?embedded=true" 
+                            class="poll-frame" 
+                            frameborder="0" 
+                            marginheight="0" 
+                            marginwidth="0">
+                            Загрузка опроса…
+                        </iframe>
                     </div>
                 </div>
             </section>
