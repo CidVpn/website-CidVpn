@@ -142,7 +142,7 @@
         .auto-sub::before {
             content: "🔄";
         }
-        .whitelist::before {
+        .auto-whitelist::before {
             content: "📝";
         }
         .app::before {
@@ -561,10 +561,10 @@
             </section>
 
             <section class="card">
-                <h2 class="whitelist">Белые списки</h2>
+                <h2 class="auto-whitelist">Автообновляемая Whitelist подписка</h2>
                 <div class="url-container">
-                    <div class="url-box" id="whitelistUrl">https://storage.yandexcloud.net/cid-vpn/whitelist.txt</div>
-                    <button class="button button-copy" id="copyWhitelist" data-url="https://storage.yandexcloud.net/cid-vpn/whitelist.txt">
+                    <div class="url-box" id="whitelistUrl">https://raw.githubusercontent.com/CidVpn/whitelist-vless-working-sub/refs/heads/main/working_proxies.txt</div>
+                    <button class="button button-copy" id="copyWhitelist" data-url="https://raw.githubusercontent.com/CidVpn/whitelist-vless-working-sub/refs/heads/main/working_proxies.txt">
                         <span class="icon">📋</span> Копировать ссылку
                     </button>
                 </div>
@@ -730,7 +730,7 @@
             copyToClipboard(url, this);
         });
 
-        // Обработчик для копирования белых списков
+        // Обработчик для копирования автообновляемой Whitelist подписки
         document.getElementById('copyWhitelist').addEventListener('click', function() {
             const url = this.getAttribute('data-url');
             copyToClipboard(url, this);
