@@ -139,10 +139,10 @@
         h2::before {
             font-size: 1.2rem;
         }
-        .auto-sub::before {
-            content: "🔄";
+        .main-sub::before {
+            content: "🔗";
         }
-        .auto-whitelist::before {
+        .whitelist::before {
             content: "📝";
         }
         .app::before {
@@ -350,83 +350,6 @@
             margin-top: 8px;
             text-align: center;
         }
-        /* Стили для раздела спонсоров */
-        .sponsors {
-            background: rgba(30, 50, 40, 0.7);
-            border-radius: 16px;
-            padding: 25px;
-            margin-top: 30px;
-            text-align: center;
-        }
-        .sponsors-title {
-            color: #66bb6a;
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            justify-content: center;
-        }
-        .sponsors-title::before {
-            content: "🤝";
-            font-size: 1.2rem;
-        }
-        .sponsors-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .sponsor-item {
-            background: rgba(20, 35, 28, 0.8);
-            border: 1px solid #4a765f;
-            border-radius: 12px;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-        .sponsor-item:hover {
-            border-color: #66bb6a;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 187, 106, 0.2);
-        }
-        .sponsor-link {
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-        .sponsor-name {
-            color: #ffd54f;
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-        .sponsor-description {
-            color: #c8e6c9;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-        .sponsor-telegram {
-            color: #29b6f6;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-        }
-        .sponsor-telegram::before {
-            content: "📢";
-        }
-        @media (min-width: 768px) {
-            .sponsors-list {
-                flex-direction: row;
-                justify-content: center;
-            }
-            .sponsor-item {
-                flex: 1;
-                max-width: 300px;
-            }
-        }
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -551,20 +474,20 @@
 
         <main>
             <section class="card">
-                <h2 class="auto-sub">Автообновляемая подписка</h2>
+                <h2 class="main-sub">Основная подписка</h2>
                 <div class="url-container">
-                    <div class="url-box" id="autoUrl">https://raw.githubusercontent.com/CidVpn/vless-working-sub/refs/heads/main/working_proxies.txt</div>
-                    <button class="button button-copy" id="copyAuto" data-url="https://raw.githubusercontent.com/CidVpn/vless-working-sub/refs/heads/main/working_proxies.txt">
+                    <div class="url-box" id="mainUrl">https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt</div>
+                    <button class="button button-copy" id="copyMain" data-url="https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt">
                         <span class="icon">📋</span> Копировать ссылку
                     </button>
                 </div>
             </section>
 
             <section class="card">
-                <h2 class="auto-whitelist">Автообновляемая Whitelist подписка</h2>
+                <h2 class="whitelist">Белые списки</h2>
                 <div class="url-container">
-                    <div class="url-box" id="whitelistUrl">https://raw.githubusercontent.com/CidVpn/whitelist-vless-working-sub/refs/heads/main/working_proxies.txt</div>
-                    <button class="button button-copy" id="copyWhitelist" data-url="https://raw.githubusercontent.com/CidVpn/whitelist-vless-working-sub/refs/heads/main/working_proxies.txt">
+                    <div class="url-box" id="whitelistUrl">https://storage.yandexcloud.net/cid-vpn/whitelist.txt</div>
+                    <button class="button button-copy" id="copyWhitelist" data-url="https://storage.yandexcloud.net/cid-vpn/whitelist.txt">
                         <span class="icon">📋</span> Копировать ссылку
                     </button>
                 </div>
@@ -625,40 +548,7 @@
                         </div>
                     </div>
                     
-                    <!-- TON адрес для хостинга -->
-                    <div class="address-row">
-                        <div class="address-label">TON (для аренды хостинга):</div>
-                        <div class="address-box" id="tonHostingAddress" data-address="UQBIXFswLKhOsu2Wq7UhsEffLiPCJN9o6ej5hPGOYPpcI9sH">
-                            "UQBIXFswLKhOsu2Wq7UhsEffLiPCJN9o6ej5hPGOYPpcI9sH"
-                        </div>
-                    </div>
-                    
                     <div class="copy-hint">Нажмите на адрес, чтобы скопировать</div>
-                </div>
-            </section>
-
-            <!-- Раздел: Наши спонсоры -->
-            <section class="sponsors">
-                <div class="sponsors-title">Наши спонсоры</div>
-                <div class="sponsors-list">
-                    <div class="sponsor-item">
-                        <a href="https://t.me/ShadowVpn_net" class="sponsor-link" target="_blank">
-                            <div class="sponsor-name">ShadowVPN</div>
-                            <div class="sponsor-description">
-                                Надежный VPN-сервис с высокой скоростью и стабильным соединением
-                            </div>
-                            <div class="sponsor-telegram">Telegram канал</div>
-                        </a>
-                    </div>
-                    <div class="sponsor-item">
-                        <a href="https://t.me/GhostVpn_net" class="sponsor-link" target="_blank">
-                            <div class="sponsor-name">GhostVPN</div>
-                            <div class="sponsor-description">
-                                Анонимный VPN для защиты приватности и обхода ограничений
-                            </div>
-                            <div class="sponsor-telegram">Telegram канал</div>
-                        </a>
-                    </div>
                 </div>
             </section>
         </main>
@@ -718,19 +608,11 @@
             copyToClipboard(address, this);
         });
 
-        // Обработчик для копирования TON адреса для хостинга
-        document.getElementById('tonHostingAddress').addEventListener('click', function() {
-            const address = this.getAttribute('data-address');
-            copyToClipboard(address, this);
-        });
-
-        // Обработчик для копирования автообновляемой подписки
-        document.getElementById('copyAuto').addEventListener('click', function() {
+        document.getElementById('copyMain').addEventListener('click', function() {
             const url = this.getAttribute('data-url');
             copyToClipboard(url, this);
         });
 
-        // Обработчик для копирования автообновляемой Whitelist подписки
         document.getElementById('copyWhitelist').addEventListener('click', function() {
             const url = this.getAttribute('data-url');
             copyToClipboard(url, this);
