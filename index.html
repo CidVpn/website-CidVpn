@@ -148,9 +148,6 @@
         .app::before {
             content: "📱";
         }
-        .poll::before {
-            content: "📊";
-        }
         .url-container {
             display: flex;
             flex-direction: column;
@@ -278,38 +275,6 @@
             color: #a5d6a7;
             font-size: 0.85rem;
         }
-        /* Стили для опроса */
-        .poll-description {
-            margin-bottom: 20px;
-            color: #c8e6c9;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-        .poll-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .poll-frame {
-            width: 100%;
-            max-width: 640px;
-            height: 509px;
-            border-radius: 12px;
-            overflow: hidden;
-            margin: 0 auto;
-        }
-        .poll-frame iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .poll-note {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #a5d6a7;
-            text-align: center;
-            font-style: italic;
-        }
         footer {
             text-align: center;
             margin-top: 50px;
@@ -385,6 +350,25 @@
             margin-top: 8px;
             text-align: center;
         }
+        /* Стили для виджета доната */
+        .yoomoney-widget {
+            margin: 25px 0;
+            text-align: center;
+        }
+        .yoomoney-widget iframe {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        .donate-options {
+            margin-top: 20px;
+        }
+        .donate-options-title {
+            color: #ffd54f;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -430,8 +414,10 @@
             .address-container {
                 padding: 18px;
             }
-            .poll-frame {
-                height: 400px;
+            .yoomoney-widget iframe {
+                width: 100% !important;
+                height: 420px !important;
+                max-width: 100%;
             }
         }
         @media (max-width: 480px) {
@@ -466,8 +452,8 @@
             .address-container {
                 padding: 15px;
             }
-            .poll-frame {
-                height: 350px;
+            .yoomoney-widget iframe {
+                height: 380px !important;
             }
         }
         @media (max-width: 360px) {
@@ -485,8 +471,8 @@
                 padding: 6px 12px;
                 font-size: 0.8rem;
             }
-            .poll-frame {
-                height: 300px;
+            .yoomoney-widget iframe {
+                height: 350px !important;
             }
         }
     </style>
@@ -571,45 +557,36 @@
                 </div>
             </section>
 
-            <!-- НОВАЯ СЕКЦИЯ: Опрос про IPTV плейлист -->
-            <section class="card">
-                <h2 class="poll">Опрос: Стоит ли делать IPTV плейлист?</h2>
-                <div class="poll-description">
-                    <p>Я рассматриваю возможность создания IPTV плейлиста для пользователей CID VPN. Пожалуйста, пройдите короткий опрос, чтобы помочь мне принять решение. Ваше мнение очень важно!</p>
-                </div>
-                
-                <div class="poll-container">
-                    <div class="poll-frame">
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScwhYoan0Bysmgcw05MkRXWzp1kJ9qdIfmgGZnv98xUdIKDhQ/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">
-                            Загрузка опроса...
-                        </iframe>
-                    </div>
-                    <p class="poll-note">Если опрос не загружается, обновите страницу или попробуйте позже</p>
-                </div>
-            </section>
-
             <section class="donate">
                 <div class="donate-title">Поддержать проект</div>
                 <p style="text-align: center; margin-bottom: 15px; color: #c8e6c9;">Если наш VPN полезен для вас, вы можете поддержать его развитие:</p>
                 
-                <div class="address-container">
-                    <!-- TON адрес -->
-                    <div class="address-row">
-                        <div class="address-label">TON:</div>
-                        <div class="address-box" id="tonAddress" data-address="UQBb0NBn64wj6IoFbRddAwoyhDj6LkqNgon_zKdNnT-v19cG">
-                            "UQBb0NBn64wj6IoFbRddAwoyhDj6LkqNgon_zKdNnT-v19cG"
-                        </div>
+                <div class="donate-options">
+                    <div class="donate-options-title">Через ЮMoney</div>
+                    <div class="yoomoney-widget">
+                        <iframe src="https://yoomoney.ru/quickpay/fundraise/widget?billNumber=1FBO9QU3D3N.260117&" width="500" height="480" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
                     </div>
                     
-                    <!-- USDT TON адрес -->
-                    <div class="address-row">
-                        <div class="address-label">USDT TON:</div>
-                        <div class="address-box" id="usdtTonAddress" data-address="UQBxMlPN-FzN3T7KktQJpYuwuZGzGqVTUeFrmyF-QLD-XFbr">
-                            "UQBxMlPN-FzN3T7KktQJpYuwuZGzGqVTUeFrmyF-QLD-XFbr"
+                    <div class="donate-options-title">Криптовалютные кошельки</div>
+                    <div class="address-container">
+                        <!-- TON адрес -->
+                        <div class="address-row">
+                            <div class="address-label">TON:</div>
+                            <div class="address-box" id="tonAddress" data-address="UQBb0NBn64wj6IoFbRddAwoyhDj6LkqNgon_zKdNnT-v19cG">
+                                "UQBb0NBn64wj6IoFbRddAwoyhDj6LkqNgon_zKdNnT-v19cG"
+                            </div>
                         </div>
+                        
+                        <!-- USDT TON адрес -->
+                        <div class="address-row">
+                            <div class="address-label">USDT TON:</div>
+                            <div class="address-box" id="usdtTonAddress" data-address="UQBxMlPN-FzN3T7KktQJpYuwuZGzGqVTUeFrmyF-QLD-XFbr">
+                                "UQBxMlPN-FzN3T7KktQJpYuwuZGzGqVTUeFrmyF-QLD-XFbr"
+                            </div>
+                        </div>
+                        
+                        <div class="copy-hint">Нажмите на адрес, чтобы скопировать</div>
                     </div>
-                    
-                    <div class="copy-hint">Нажмите на адрес, чтобы скопировать</div>
                 </div>
             </section>
         </main>
