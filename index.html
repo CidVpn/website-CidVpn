@@ -350,25 +350,6 @@
             margin-top: 8px;
             text-align: center;
         }
-        /* Стили для виджета доната */
-        .yoomoney-widget {
-            margin: 25px 0;
-            text-align: center;
-        }
-        .yoomoney-widget iframe {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-        }
-        .donate-options {
-            margin-top: 20px;
-        }
-        .donate-options-title {
-            color: #ffd54f;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            text-align: center;
-        }
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -414,11 +395,6 @@
             .address-container {
                 padding: 18px;
             }
-            .yoomoney-widget iframe {
-                width: 100% !important;
-                height: 420px !important;
-                max-width: 100%;
-            }
         }
         @media (max-width: 480px) {
             h1 {
@@ -452,9 +428,6 @@
             .address-container {
                 padding: 15px;
             }
-            .yoomoney-widget iframe {
-                height: 380px !important;
-            }
         }
         @media (max-width: 360px) {
             .top-buttons {
@@ -470,9 +443,6 @@
             .top-button {
                 padding: 6px 12px;
                 font-size: 0.8rem;
-            }
-            .yoomoney-widget iframe {
-                height: 350px !important;
             }
         }
     </style>
@@ -561,32 +531,24 @@
                 <div class="donate-title">Поддержать проект</div>
                 <p style="text-align: center; margin-bottom: 15px; color: #c8e6c9;">Если наш VPN полезен для вас, вы можете поддержать его развитие:</p>
                 
-                <div class="donate-options">
-                    <div class="donate-options-title">Через ЮMoney</div>
-                    <div class="yoomoney-widget">
-                        <iframe src="https://yoomoney.ru/quickpay/fundraise/widget?billNumber=1FBO9QU3D3N.260117&" width="500" height="480" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+                <div class="address-container">
+                    <!-- TON адрес -->
+                    <div class="address-row">
+                        <div class="address-label">TON:</div>
+                        <div class="address-box" id="tonAddress" data-address="UQBb0NBn64wj6IoFbRddAwoyhDj6LkqNgon_zKdNnT-v19cG">
+                            "UQBb0NBn64wj6IoFbRddAwoyhDj6LkqNgon_zKdNnT-v19cG"
+                        </div>
                     </div>
                     
-                    <div class="donate-options-title">Криптовалютные кошельки</div>
-                    <div class="address-container">
-                        <!-- TON адрес -->
-                        <div class="address-row">
-                            <div class="address-label">TON:</div>
-                            <div class="address-box" id="tonAddress" data-address="UQBb0NBn64wj6IoFbRddAwoyhDj6LkqNgon_zKdNnT-v19cG">
-                                "UQBb0NBn64wj6IoFbRddAwoyhDj6LkqNgon_zKdNnT-v19cG"
-                            </div>
+                    <!-- USDT TON адрес -->
+                    <div class="address-row">
+                        <div class="address-label">USDT TON:</div>
+                        <div class="address-box" id="usdtTonAddress" data-address="UQBxMlPN-FzN3T7KktQJpYuwuZGzGqVTUeFrmyF-QLD-XFbr">
+                            "UQBxMlPN-FzN3T7KktQJpYuwuZGzGqVTUeFrmyF-QLD-XFbr"
                         </div>
-                        
-                        <!-- USDT TON адрес -->
-                        <div class="address-row">
-                            <div class="address-label">USDT TON:</div>
-                            <div class="address-box" id="usdtTonAddress" data-address="UQBxMlPN-FzN3T7KktQJpYuwuZGzGqVTUeFrmyF-QLD-XFbr">
-                                "UQBxMlPN-FzN3T7KktQJpYuwuZGzGqVTUeFrmyF-QLD-XFbr"
-                            </div>
-                        </div>
-                        
-                        <div class="copy-hint">Нажмите на адрес, чтобы скопировать</div>
                     </div>
+                    
+                    <div class="copy-hint">Нажмите на адрес, чтобы скопировать</div>
                 </div>
             </section>
         </main>
