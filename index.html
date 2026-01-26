@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -188,6 +188,73 @@
             font-size: 1.2rem;
         }
 
+        /* ========== СЕКЦИЯ ПОДДЕРЖКИ ========== */
+        .support-section {
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .support-card {
+            background-color: rgba(13, 21, 13, 0.8);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .support-card:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 30px var(--glow-color), inset 0 0 20px rgba(57, 255, 20, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .support-card h2 {
+            font-size: 1.8rem;
+            color: var(--accent-green);
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+        }
+
+        .support-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: transparent;
+            border: 2px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 15px 40px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .support-btn:hover {
+            background-color: rgba(57, 255, 20, 0.1);
+            box-shadow: 0 0 20px var(--glow-color);
+            transform: scale(1.05);
+        }
+
+        .support-btn:active {
+            transform: scale(0.98);
+        }
+
+        .support-icon {
+            font-size: 1.2rem;
+        }
+
         /* ========== FOOTER ========== */
         footer {
             background-color: rgba(10, 15, 10, 0.95);
@@ -325,8 +392,17 @@
                 padding: 30px 20px;
             }
 
+            .support-card {
+                padding: 30px 20px;
+            }
+
             .copy-btn {
                 padding: 12px 24px;
+                font-size: 0.95rem;
+            }
+
+            .support-btn {
+                padding: 12px 30px;
                 font-size: 0.95rem;
             }
 
@@ -373,6 +449,17 @@
                     <span class="copy-text">Копировать ссылку</span>
                 </button>
             </div>
+        </div>
+    </section>
+
+    <!-- Секция поддержки -->
+    <section class="support-section">
+        <div class="support-card">
+            <h2>Поддержать проект</h2>
+            <a href="https://pay.cloudtips.ru/p/fde92c74" target="_blank" rel="noopener noreferrer" class="support-btn">
+                <span class="support-icon">💳</span>
+                <span>Картой РФ</span>
+            </a>
         </div>
     </section>
 
