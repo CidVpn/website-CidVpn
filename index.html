@@ -84,23 +84,71 @@
         .description {
             font-size: 1.15rem;
             line-height: 1.6;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             color: #b3c5bc;
             font-weight: 400;
         }
 
-        .release-date {
-            display: inline-block;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--dark-bg);
-            background: var(--neon-green);
-            padding: 8px 20px;
-            border-radius: 50px;
+        /* Таймер обратного отсчета */
+        .countdown-wrapper {
             margin-bottom: 40px;
-            box-shadow: 0 0 15px var(--neon-green-glow);
+        }
+
+        .countdown-title {
+            font-size: 0.9rem;
+            color: var(--neon-green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .time-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 15px;
+            min-width: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: inset 0 0 10px rgba(0, 255, 136, 0.05);
+        }
+
+        .time-box span {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 0 0 10px var(--neon-green-glow);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .time-box small {
+            margin-top: 5px;
+            font-size: 0.75rem;
+            color: #8c9c94;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .release-ready {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--neon-green);
+            text-shadow: 0 0 20px var(--neon-green-glow);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 20px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 16px;
+            border: 1px solid var(--neon-green);
         }
 
         /* Секция подписок */
@@ -114,7 +162,7 @@
         }
 
         .sub-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .sub-group:last-child {
@@ -122,11 +170,28 @@
         }
 
         .sub-label {
-            display: block;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
             margin-bottom: 8px;
             font-size: 0.95rem;
             color: #e2f0e9;
             font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Прямоугольная плашка [NEW] */
+        .badge-new {
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            padding: 2px 8px;
+            font-weight: 800;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 10px var(--neon-green-glow);
+            display: inline-block;
         }
 
         .copy-wrapper {
@@ -235,6 +300,19 @@
                 padding: 30px 20px;
             }
             h1 { font-size: 2.5rem; }
+            .countdown {
+                gap: 8px;
+            }
+            .time-box {
+                min-width: 65px;
+                padding: 10px;
+            }
+            .time-box span {
+                font-size: 1.5rem;
+            }
+            .time-box small {
+                font-size: 0.6rem;
+            }
             .copy-wrapper {
                 flex-direction: column;
             }
@@ -259,11 +337,42 @@
             Мы вернулись с новой версией и готовы ускорить ваш интернет! Вы этого очень ждали и вы дождались!
         </p>
 
-        <div class="release-date">
-            Дата выхода: Скоро...
+        <!-- Таймер -->
+        <div class="countdown-wrapper" id="timer-wrapper">
+            <div class="countdown-title">До выхода осталось:</div>
+            <div class="countdown">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <small>Дней</small>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <small>Часов</small>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <small>Минут</small>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <small>Секунд</small>
+                </div>
+            </div>
         </div>
 
         <div class="subs-container">
+            <!-- Новая подписка -->
+            <div class="sub-group">
+                <label class="sub-label">
+                    <span class="badge-new">NEW</span> 
+                    Автообновляемая белая подписка от CID VPN и CatWhiteVPN:
+                </label>
+                <div class="copy-wrapper">
+                    <input type="text" id="sub-catwhite" class="copy-input" value="https://gitverse.ru/api/repos/cid-uskoritel/cid-catwhite-uskoritel/raw/branch/master/configs.txt" readonly>
+                    <button class="btn-copy" onclick="copyText('sub-catwhite', this)">Копировать</button>
+                </div>
+            </div>
+
             <!-- Основная подписка -->
             <div class="sub-group">
                 <label class="sub-label">Основная подписка:</label>
@@ -297,19 +406,14 @@
         // Функция для копирования текста
         function copyText(inputId, btnElement) {
             const input = document.getElementById(inputId);
-            
-            // Выделяем текст
             input.select();
-            input.setSelectionRange(0, 99999); // Для мобильных устройств
+            input.setSelectionRange(0, 99999);
             
-            // Копируем в буфер обмена
             navigator.clipboard.writeText(input.value).then(() => {
-                // Визуальный отклик кнопки
                 const originalText = btnElement.innerText;
                 btnElement.innerText = 'Скопировано!';
                 btnElement.classList.add('copied');
                 
-                // Возвращаем исходный текст через 2 секунды
                 setTimeout(() => {
                     btnElement.innerText = originalText;
                     btnElement.classList.remove('copied');
@@ -318,6 +422,32 @@
                 console.error('Ошибка копирования: ', err);
             });
         }
+
+        // Таймер обратного отсчета
+        // Дата: 11 июня 2026, 06:00 (МСК = UTC+3)
+        const targetDate = new Date("2026-06-11T06:00:00+03:00").getTime();
+
+        const timerInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                document.getElementById("timer-wrapper").innerHTML = '<div class="release-ready">Релиз состоялся!</div>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+            
+        }, 1000);
     </script>
 </body>
 </html>
